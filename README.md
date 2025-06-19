@@ -1,6 +1,6 @@
 # 🎲 Snake and Ladder Game (Java)
 
-A modular and testable **Snake and Ladder** game implementation in Java using object-oriented design principles and strategy patterns.
+A modular and testable **Snake and Ladder** game implemented in Java, using object-oriented design principles and strategy patterns.
 
 ---
 
@@ -26,41 +26,3 @@ A modular and testable **Snake and Ladder** game implementation in Java using ob
 
 ```bash
 mvn test
-
----
-
-## ⚙️ Requirements
-
-- Java 11+
-- Maven 3.6+
-
----
-
-Includes unit tests for:
-
-GameManager logic
-
-Board snake/ladder behavior
-
-Dice randomness
-
-Strategy injection
-
----
-
-## ▶️ How to Play
-Run the game using:
-
-mvn compile exec:java -Dexec.mainClass="com.snakegame.SnakeAndLadderGame"
-
----
-
-##🧠 Design Highlights
-Strategy Pattern: Used to inject different snake/ladder placement behaviors.
-
-Dependency Injection: GameManager accepts board/dice as constructor args for testability.
-
-Encapsulation: Player and Board manage their own state with safe accessors.
-
-Optional API: Used to avoid nulls when checking for snake/ladder hits.
-
