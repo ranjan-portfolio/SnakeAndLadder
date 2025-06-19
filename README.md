@@ -26,6 +26,12 @@ A modular and testable **Snake and Ladder** game implemented in Java, using obje
 
 ```bash
 mvn test
+```
 
 ---
 ## ▶️ How to Play
+
+Run the game using:
+```bash
+mvn compile exec:java -Dexec.mainClass="com.snakegame.SnakeAndLadderGame"
+```
