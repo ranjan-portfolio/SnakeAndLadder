@@ -42,6 +42,8 @@ SnakeAndLadderGame/
 ```bash
 mvn test
 
+---
+
 ## ⚙️ Requirements
 
 - Java 11+
@@ -59,10 +61,14 @@ Dice randomness
 
 Strategy injection
 
+---
+
 ## ▶️ How to Play
 Run the game using:
 
 mvn compile exec:java -Dexec.mainClass="com.snakegame.SnakeAndLadderGame"
+
+---
 
 ##🧠 Design Highlights
 Strategy Pattern: Used to inject different snake/ladder placement behaviors.
