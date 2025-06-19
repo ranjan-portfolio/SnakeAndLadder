@@ -1,7 +1,7 @@
 package com.snakegame.placementstrategy;
 
-import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
 
 public interface ILadderPlacementStrategy {
-    public Map<Integer,Integer> getLadderPositions();
+    public ConcurrentMap<Integer,Integer> getLadderPositions();
 }

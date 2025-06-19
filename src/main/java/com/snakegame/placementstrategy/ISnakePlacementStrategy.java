@@ -1,8 +1,9 @@
 package com.snakegame.placementstrategy;
 
-import java.util.Map;
+
+import java.util.concurrent.ConcurrentMap;
 
 public interface ISnakePlacementStrategy {
 
-    public Map<Integer,Integer> getSnakePositions();
+    public ConcurrentMap<Integer,Integer> getSnakePositions();
 } 

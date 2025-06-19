@@ -1,6 +1,8 @@
 package com.snakegame.entity;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import com.snakegame.placementstrategy.ISnakePlacementStrategy;
 
@@ -14,7 +16,7 @@ public class Snake {
         this.snakePlacementStrategy=placementStrategy;
     }
 
-    public Map<Integer,Integer> getSnakePositions(){
+    public ConcurrentMap<Integer,Integer> getSnakePositions(){
         return snakePlacementStrategy.getSnakePositions();
     }
     

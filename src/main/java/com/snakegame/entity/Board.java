@@ -2,6 +2,7 @@ package com.snakegame.entity;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentMap;
 
 import com.snakegame.placementstrategy.ILadderPlacementStrategy;
 import com.snakegame.placementstrategy.ISnakePlacementStrategy;
@@ -12,8 +13,8 @@ public class Board {
 
     private Snake snake;
     private Ladder ladder;
-    private Map<Integer,Integer> snakePositions;
-    private Map<Integer,Integer> ladderPositions;
+    private ConcurrentMap<Integer,Integer> snakePositions;
+    private ConcurrentMap<Integer,Integer> ladderPositions;
     public static final int GAME_WINNING_POSITION=100;
 
     public Snake getSnake() {
@@ -32,19 +33,19 @@ public class Board {
         this.ladder = ladder;
     }
 
-    public Map<Integer, Integer> getSnakePositions() {
+    public ConcurrentMap<Integer, Integer> getSnakePositions() {
         return snakePositions;
     }
 
-    public void setSnakePositions(Map<Integer, Integer> snakePositions) {
+    public void setSnakePositions(ConcurrentMap<Integer, Integer> snakePositions) {
         this.snakePositions = snakePositions;
     }
 
-    public Map<Integer, Integer> getLadderPositions() {
+    public ConcurrentMap<Integer, Integer> getLadderPositions() {
         return ladderPositions;
     }
 
-    public void setLadderPositions(Map<Integer, Integer> ladderPositions) {
+    public void setLadderPositions(ConcurrentMap<Integer, Integer> ladderPositions) {
         this.ladderPositions = ladderPositions;
     }
 

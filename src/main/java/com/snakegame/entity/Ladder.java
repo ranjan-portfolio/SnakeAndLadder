@@ -1,6 +1,8 @@
 package com.snakegame.entity;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import com.snakegame.placementstrategy.ILadderPlacementStrategy;
 
@@ -13,7 +15,7 @@ public class Ladder {
         this.ladderPlacementStrategy=ladderPlacementStrategy;
     }
 
-    public Map<Integer,Integer> getLadderPositions(){
+    public ConcurrentMap<Integer,Integer> getLadderPositions(){
         return ladderPlacementStrategy.getLadderPositions();
     }
 }

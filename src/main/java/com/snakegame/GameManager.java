@@ -7,10 +7,7 @@ import java.util.logging.Logger;
 import com.snakegame.entity.Board;
 import com.snakegame.entity.Dice;
 import com.snakegame.entity.Player;
-import com.snakegame.placementstrategy.ILadderPlacementStrategy;
-import com.snakegame.placementstrategy.ISnakePlacementStrategy;
-import com.snakegame.placementstrategy.impl.FixedLadderPlacementStrategy;
-import com.snakegame.placementstrategy.impl.FixedSnakePlacementStrategy;
+
 
 public class GameManager {
     private static final Logger logger=Logger.getLogger(GameManager.class.getName());

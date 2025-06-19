@@ -15,6 +15,7 @@ import com.snakegame.placementstrategy.impl.FixedSnakePlacementStrategy;
 public class SnakeAndLadderGame {
     private static final Logger logger=Logger.getLogger(SnakeAndLadderGame.class.getName());
     public static void main(String[] args) {
+        
         Player player=new Player("RED");
         Player player1=new Player("BLUE");
         Player gameWinner=null;
