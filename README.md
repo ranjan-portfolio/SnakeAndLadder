@@ -29,6 +29,7 @@ SnakeAndLadderGame/
 │ └── test/
 │ └── java/com/snakegame/ # Unit tests
 └── pom.xml
+---
 
 ## ⚙️ Requirements
 
