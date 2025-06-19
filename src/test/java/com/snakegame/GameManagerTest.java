@@ -29,7 +29,7 @@ public class GameManagerTest {
         GameManager manager=spy(new GameManager(scanner,board, dice));
 
         doReturn(false).doReturn(false).doReturn(true)
-        .when(manager).processTurn(any(), any(), any());
+        .when(manager).processTurn(any());
 
         Player winner = manager.playGame(players);
 

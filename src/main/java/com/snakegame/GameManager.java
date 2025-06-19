@@ -25,19 +25,21 @@ public class GameManager {
     }
    
     public  Player playGame(List<Player> players) {
-        while(true){
-            for(Player player: players){
-                if(processTurn(player, board, dice)){
-                    return player;
+        if(players!=null && !players.isEmpty()){
+            while(true){
+                for(Player player: players){
+                    if(processTurn(player)){
+                        return player;
+                    }
                 }
             }
-
         }
+        return null;
 
 
     }
 
-      boolean processTurn(Player player,Board board,Dice dice){
+      boolean processTurn(Player player){
         String color=player.getColor();
         logger.info("This is player::"+color+"::turn");
         logger.info("Press Enter to roll dice::");
@@ -55,15 +57,15 @@ public class GameManager {
         newPosition=player.getCurrentPosition();
         //check snake and decrement the current position
         board.getSnakeBites(newPosition).ifPresent(snake -> {
+           logger.info("Snake bite<<<<"+color+"::position demoted to::"+snake+"::from::"+player.getCurrentPosition());
             player.setCurrentPosition(snake);
-            logger.info("Snake bite<<<<"+color+"::position demoted to::"+snake+"::from::"+player.getCurrentPosition());
         });
        
 
         //check ladder and increment the current position
         board.getLadder(newPosition).ifPresent(ladder -> {
+            logger.info("Ladder Climb>>>>"+color+"::position promoted to::"+ladder+"::from::"+player.getCurrentPosition());
             player.setCurrentPosition(ladder);
-            logger.info("Snake bite<<<<"+color+"::position demoted to::"+ladder+"::from::"+player.getCurrentPosition());
         });
         
         return player.getCurrentPosition()==Board.GAME_WINNING_POSITION;

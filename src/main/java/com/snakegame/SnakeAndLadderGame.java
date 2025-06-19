@@ -35,7 +35,7 @@ public class SnakeAndLadderGame {
              GameManager gameManager=new GameManager(scanner,setUpBoard(),getDice());
              gameWinner=gameManager.playGame(players);
         
-            logger.info("Game Winner IS:" + gameWinner.getColor());
+            logger.info("<<<<GAME WINNER IS:>>>>" + gameWinner.getColor());
        } catch (Exception e) {
             e.printStackTrace();
        } 
