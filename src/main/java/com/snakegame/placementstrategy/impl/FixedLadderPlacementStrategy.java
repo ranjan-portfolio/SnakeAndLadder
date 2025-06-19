@@ -14,7 +14,7 @@ public class FixedLadderPlacementStrategy implements ILadderPlacementStrategy {
 
     @Override
     public ConcurrentMap<Integer, Integer> getLadderPositions() {
-        logger.info("getting ladder positions");
+        //logger.info("getting ladder positions");
         return new ConcurrentHashMap<>(Map.of(2,38,7,14,8,31,15,26,21,42,28,84,36,44,51,67,71,91,78,98));
     }
 

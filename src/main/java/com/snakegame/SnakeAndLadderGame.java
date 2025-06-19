@@ -1,6 +1,8 @@
 package com.snakegame;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,27 +17,41 @@ import com.snakegame.placementstrategy.impl.FixedSnakePlacementStrategy;
 public class SnakeAndLadderGame {
     private static final Logger logger=Logger.getLogger(SnakeAndLadderGame.class.getName());
     public static void main(String[] args) {
-        
-        Player player=new Player("RED");
-        Player player1=new Player("BLUE");
-        Player gameWinner=null;
 
-        List<Player> players=List.of(player,player1);
-        ISnakePlacementStrategy snakePlacementStrategy=new FixedSnakePlacementStrategy();
-        ILadderPlacementStrategy ladderPlacementStrategy=new FixedLadderPlacementStrategy();
+        List<Player> players=new ArrayList<>();
+       try (Scanner scanner=new Scanner(System.in);) {
 
-        Board board=new Board(snakePlacementStrategy, ladderPlacementStrategy);
-        Dice dice=new Dice();
+            System.out.println("How many players are playing:");
+            int noOfPlayers=scanner.nextInt();
+            scanner.nextLine();
+
+            for(int i=0;i<noOfPlayers;i++){
+                System.out.println("Choose a color for player :"+(i+1)+":");
+                String color=scanner.nextLine().trim();
+                Player player=new Player(color);
+                players.add(player);
+            }
+             Player gameWinner=null;
+             GameManager gameManager=new GameManager(scanner,setUpBoard(),getDice());
+             gameWinner=gameManager.playGame(players);
         
-        GameManager gameManager=new GameManager(board,dice);
-        try{
-            gameWinner=gameManager.playGame(players);
-        }catch(Exception ex){
-            logger.log(Level.SEVERE,"Exception encountered!!!",ex);
-            ex.printStackTrace();
-            
-        }
+            logger.info("Game Winner IS:" + gameWinner.getColor());
+       } catch (Exception e) {
+            e.printStackTrace();
+       } 
         
-        logger.info("Game Winner IS:" + gameWinner.getColor());
+       
+    }
+
+    private static Board setUpBoard(){
+         ISnakePlacementStrategy snakePlacementStrategy=new FixedSnakePlacementStrategy();
+         ILadderPlacementStrategy ladderPlacementStrategy=new FixedLadderPlacementStrategy();
+
+         Board board=new Board(snakePlacementStrategy, ladderPlacementStrategy);
+         return board;
+    }
+
+    private static Dice getDice(){
+         return new Dice();
     }
 }

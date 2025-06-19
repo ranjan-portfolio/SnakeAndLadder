@@ -1,13 +1,15 @@
 package com.snakegame.entity;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Player {
     
     private String color;
-    private int currentPosition;
+    private AtomicInteger currentPosition=new AtomicInteger();
 
     public Player(String color){
         this.color=color;
-        this.currentPosition=0;
+        currentPosition.set(0);
     }
     
     public String getColor() {
@@ -19,11 +21,11 @@ public class Player {
     }
 
     public int getCurrentPosition() {
-        return currentPosition;
+        return currentPosition.get();
     }
 
-    public void setCurrentPosition(int currentPosition) {
-        this.currentPosition = currentPosition;
+    public void setCurrentPosition(int pos) {
+        currentPosition.set(pos);
     }
 
     

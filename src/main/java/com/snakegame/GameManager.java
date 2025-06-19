@@ -1,6 +1,8 @@
 package com.snakegame;
 
 import java.util.List;
+import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
 
@@ -14,10 +16,12 @@ public class GameManager {
     
     private Board board;
     private Dice dice;
+    private Scanner scanner;
 
-    public GameManager(Board board,Dice dice){
+    public GameManager(Scanner scanner,Board board,Dice dice){
         this.board=board;
         this.dice=dice;
+        this.scanner=scanner;
     }
    
     public  Player playGame(List<Player> players) {
@@ -36,6 +40,8 @@ public class GameManager {
       boolean processTurn(Player player,Board board,Dice dice){
         String color=player.getColor();
         logger.info("This is player::"+color+"::turn");
+        logger.info("Press Enter to roll dice::");
+        scanner.nextLine();
         int diceOutCome=dice.rollDice();
         logger.info("Dice rolled by::"+color+"::outcome is::"+diceOutCome);
         int newPosition=player.getCurrentPosition()+diceOutCome;

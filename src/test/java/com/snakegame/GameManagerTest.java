@@ -11,6 +11,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class GameManagerTest {
 
@@ -18,13 +19,14 @@ public class GameManagerTest {
     public void testPlayReturnsWinner(){
         Dice dice=mock(Dice.class);
         Board board=mock(Board.class);
+        Scanner scanner=new Scanner(System.in);
 
         Player player=new Player("RED");
         Player player2=new Player("Blue");
 
         List<Player> players=List.of(player,player2);
 
-        GameManager manager=spy(new GameManager(board, dice));
+        GameManager manager=spy(new GameManager(scanner,board, dice));
 
         doReturn(false).doReturn(false).doReturn(true)
         .when(manager).processTurn(any(), any(), any());
