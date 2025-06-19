@@ -35,3 +35,10 @@ Run the game using:
 ```bash
 mvn compile exec:java -Dexec.mainClass="com.snakegame.SnakeAndLadderGame"
 ```
+---
+
+## 🧠 Design Highlights
+Strategy Pattern: Used to inject different snake/ladder placement behaviors.
+Dependency Injection: GameManager accepts board/dice as constructor arguments for testability.
+Encapsulation: Player and Board manage their own state with safe accessors.
+Optional API: Used to avoid nulls when checking for snake/ladder hits.
