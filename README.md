@@ -15,22 +15,6 @@ A modular and testable **Snake and Ladder** game implementation in Java using ob
 
 ---
 
-## 🏗️ Project Structure
-
-SnakeAndLadderGame/
-├── src/
-│ ├── main/
-│ │ └── java/com/snakegame/
-│ │ ├── entity/ # Core game entities (Player, Board, Dice, Snake, Ladder)
-│ │ ├── placementstrategy/ # Strategy interfaces
-│ │ ├── placementstrategy/impl/ # Fixed implementations of snake/ladder placement
-│ │ ├── GameManager.java # Main game engine
-│ │ └── SnakeAndLadderGame.java # Entry point
-│ └── test/
-│ └── java/com/snakegame/ # Unit tests
-└── pom.xml
----
-
 ## ⚙️ Requirements
 
 - Java 11+
