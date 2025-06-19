@@ -2,7 +2,7 @@ package com.snakegame.entity;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.lang.annotation.Repeatable;
+
 
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
