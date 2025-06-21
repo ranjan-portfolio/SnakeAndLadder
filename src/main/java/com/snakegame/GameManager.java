@@ -12,11 +12,12 @@ import com.snakegame.entity.Player;
 
 
 public class GameManager {
-    private static final Logger logger=Logger.getLogger(GameManager.class.getName());
+    private static final Logger logger=Logger.getLogger(GameManager.class.getSimpleName());
     
     private Board board;
     private Dice dice;
     private Scanner scanner;
+    private boolean isWinnerFound=false;
 
     public GameManager(Scanner scanner,Board board,Dice dice){
         this.board=board;
@@ -26,7 +27,7 @@ public class GameManager {
    
     public  Player playGame(List<Player> players) {
         if(players!=null && !players.isEmpty()){
-            while(true){
+            while(!isWinnerFound){
                 for(Player player: players){
                     if(processTurn(player)){
                         return player;
@@ -46,29 +47,13 @@ public class GameManager {
         scanner.nextLine();
         int diceOutCome=dice.rollDice();
         logger.info("Dice rolled by::"+color+"::outcome is::"+diceOutCome);
-        int newPosition=player.getCurrentPosition()+diceOutCome;
-        logger.info("Postion of player::"+color+"::is::"+newPosition);
-        if(newPosition>Board.GAME_WINNING_POSITION){
-            logger.info("Player::"+color+"::exceeds position 100!! try next time");
+        int newPosition=board.updatePosition(color, player.getCurrentPosition(), diceOutCome);
+        if(board.checkBoardEdgeCase(color,newPosition)){
             return false;
         } 
-        
+        logger.info("Postion of player::"+color+"::is::"+newPosition);
         player.setCurrentPosition(newPosition);
-        newPosition=player.getCurrentPosition();
-        //check snake and decrement the current position
-        board.getSnakeBites(newPosition).ifPresent(snake -> {
-           logger.info("Snake bite<<<<"+color+"::position demoted to::"+snake+"::from::"+player.getCurrentPosition());
-            player.setCurrentPosition(snake);
-        });
-       
-
-        //check ladder and increment the current position
-        board.getLadder(newPosition).ifPresent(ladder -> {
-            logger.info("Ladder Climb>>>>"+color+"::position promoted to::"+ladder+"::from::"+player.getCurrentPosition());
-            player.setCurrentPosition(ladder);
-        });
-        
-        return player.getCurrentPosition()==Board.GAME_WINNING_POSITION;
+        return isWinnerFound=player.getCurrentPosition()==Board.GAME_WINNING_POSITION;
     }
     
 }

@@ -1,8 +1,7 @@
 package com.snakegame.entity;
 
-import java.util.Optional;
-import java.util.concurrent.ConcurrentMap;
 
+import java.util.logging.Logger;
 import com.snakegame.placementstrategy.ILadderPlacementStrategy;
 import com.snakegame.placementstrategy.ISnakePlacementStrategy;
 
@@ -12,9 +11,8 @@ public class Board {
 
     private Snake snake;
     private Ladder ladder;
-    private ConcurrentMap<Integer,Integer> snakePositions;
-    private ConcurrentMap<Integer,Integer> ladderPositions;
     public static final int GAME_WINNING_POSITION=100;
+    public static Logger logger=Logger.getLogger(Board.class.getName());
 
     public Snake getSnake() {
         return snake;
@@ -32,35 +30,28 @@ public class Board {
         this.ladder = ladder;
     }
 
-    public ConcurrentMap<Integer, Integer> getSnakePositions() {
-        return snakePositions;
-    }
-
-    public void setSnakePositions(ConcurrentMap<Integer, Integer> snakePositions) {
-        this.snakePositions = snakePositions;
-    }
-
-    public ConcurrentMap<Integer, Integer> getLadderPositions() {
-        return ladderPositions;
-    }
-
-    public void setLadderPositions(ConcurrentMap<Integer, Integer> ladderPositions) {
-        this.ladderPositions = ladderPositions;
-    }
+    
 
     public Board(ISnakePlacementStrategy snakePlacementStrategy,ILadderPlacementStrategy ladderPlacementStrategy){
         this.snake=new Snake(snakePlacementStrategy);
         this.ladder=new Ladder(ladderPlacementStrategy);
-        this.snakePositions=snake.getSnakePositions();
-        this.ladderPositions=ladder.getLadderPositions();
     }
 
-    public Optional<Integer> getSnakeBites(int position){
-        return Optional.ofNullable(snakePositions.get(position));
+    
+
+    public int updatePosition(String color,int currentPosition,int diceOutCome){
+        Integer updatedPosition=currentPosition+diceOutCome;
+        updatedPosition=snake.updatePlayerPositionForSnakeBite(color,updatedPosition);
+        updatedPosition=ladder.updatePlayerPositionForLadderJump(color, currentPosition);
+        return updatedPosition.intValue();
     }
 
-    public Optional<Integer> getLadder(int position){
-        return Optional.ofNullable(ladderPositions.get(position));
+    public boolean checkBoardEdgeCase(String color,int currentPosition){
+        if(currentPosition>GAME_WINNING_POSITION){
+            logger.info("Player::"+color+"::exceeds position 100!! try next time");
+            return false;
+        }
+        return true;
     }
     
 }

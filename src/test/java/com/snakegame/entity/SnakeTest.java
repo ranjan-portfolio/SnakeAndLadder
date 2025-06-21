@@ -13,22 +13,25 @@ import com.snakegame.placementstrategy.ISnakePlacementStrategy;
 
 public class SnakeTest {
 
-    ISnakePlacementStrategy snakePlacementStrategy;
+    private ISnakePlacementStrategy snakePlacementStrategy;
+    private Snake snake;
+    private ConcurrentMap<Integer,Integer> snakeMap;
+
 
     @BeforeEach
     public void setUp(){
         snakePlacementStrategy=mock(ISnakePlacementStrategy.class);
-        ConcurrentMap<Integer,Integer> snakeMap=new ConcurrentHashMap<Integer,Integer>();
+        snakeMap=new ConcurrentHashMap<Integer,Integer>();
         snakeMap.put(90,34);
         snakeMap.put(60,20);
         when(snakePlacementStrategy.getSnakePositions()).thenReturn(snakeMap);
+        snake=new Snake(snakePlacementStrategy);
     }
 
     @Test
     public void getSnakePositions(){
-        Snake snake=new Snake(snakePlacementStrategy);
-        ConcurrentMap<Integer,Integer> snakeMap=snake.getSnakePositions();
-        assertTrue(snakeMap.get(90)==34);
+        
+        assertEquals(snake.snakePositions, snakeMap,"Snake positions should be intialized through strategy");
     }
     
 }
