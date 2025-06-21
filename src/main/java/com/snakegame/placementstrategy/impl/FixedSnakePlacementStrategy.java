@@ -14,7 +14,7 @@ public class FixedSnakePlacementStrategy implements ISnakePlacementStrategy {
     private static final Logger logger=Logger.getLogger(FixedSnakePlacementStrategy.class.getName());
     @Override
     public ConcurrentMap<Integer, Integer> getSnakePositions() {
-        //logger.info("Getting ladder positions");
+       logger.info("Getting ladder positions");
        return new ConcurrentHashMap<>(Map.of(99,78,95,75,92,88,89,68,74,53,64,60,62,19,49,11,46,25,16,6));
     }
     
