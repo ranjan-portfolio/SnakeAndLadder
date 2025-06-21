@@ -42,16 +42,16 @@ public class Board {
     public int updatePosition(String color,int currentPosition,int diceOutCome){
         Integer updatedPosition=currentPosition+diceOutCome;
         updatedPosition=snake.updatePlayerPositionForSnakeBite(color,updatedPosition);
-        updatedPosition=ladder.updatePlayerPositionForLadderJump(color, currentPosition);
+        updatedPosition=ladder.updatePlayerPositionForLadderJump(color, updatedPosition);
         return updatedPosition.intValue();
     }
 
     public boolean checkBoardEdgeCase(String color,int currentPosition){
         if(currentPosition>GAME_WINNING_POSITION){
             logger.info("Player::"+color+"::exceeds position 100!! try next time");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
     
 }

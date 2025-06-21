@@ -21,7 +21,7 @@ public class Ladder {
     public int updatePlayerPositionForLadderJump(String color,int currentPosition){
         Integer ladderJump=ladderPositions.get(currentPosition);
         if(ladderJump!=null){
-            logger.info("Ladder jump<<<<"+color+"::position promoted to::"+ladderJump.intValue()+"::from::"+currentPosition);
+            logger.info("Ladder jump>>>>"+color+"::position promoted to::"+ladderJump.intValue()+"::from::"+currentPosition);
             return ladderJump;
         }
         return Integer.valueOf(currentPosition);
